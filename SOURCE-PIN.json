@@ -1,18 +1,89 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "upstream": {
     "repository": "https://github.com/arthenica/ffmpeg-kit-next.git",
     "revision": "5e51b2da4c3593c0f2f9b49f53eeb497d93e39d3"
   },
   "buildOptions": {
-    "common": ["--enable-gpl", "--enable-x264", "--no-ffmpeg-kit-protocols"],
-    "ios": ["--enable-ios-videotoolbox"],
-    "android": ["--enable-android-media-codec"],
-    "iosReleaseDisabledArchitectures": ["arm64-mac-catalyst", "x86-64-mac-catalyst", "arm64-simulator", "x86-64"],
-    "iosDevelopmentDisabledArchitectures": ["arm64-mac-catalyst", "x86-64-mac-catalyst"]
+    "common": [
+      "--enable-gpl",
+      "--enable-x264",
+      "--no-ffmpeg-kit-protocols"
+    ],
+    "ios": [
+      "--enable-ios-videotoolbox"
+    ],
+    "android": [
+      "--enable-android-media-codec"
+    ],
+    "iosReleaseDisabledArchitectures": [
+      "arm64-mac-catalyst",
+      "x86-64-mac-catalyst",
+      "arm64-simulator",
+      "x86-64"
+    ],
+    "iosDevelopmentDisabledArchitectures": [
+      "arm64-mac-catalyst",
+      "x86-64-mac-catalyst"
+    ]
   },
   "androidPatch": {
     "path": "patches/0001-android-suppress-unused-function-warning.patch",
     "sha256": "c8095b81bdb610303c180fc52bee114e15f9b8110acb91429b79e3c1e2ea267c"
+  },
+  "sourceInputs": {
+    "runtime": [
+      {
+        "name": "FFmpeg",
+        "repository": "https://github.com/arthenica/FFmpeg.git",
+        "upstreamRef": "n9.0.1",
+        "revision": "bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa",
+        "platforms": [
+          "android",
+          "ios"
+        ]
+      },
+      {
+        "name": "x264",
+        "repository": "https://github.com/arthenica/x264.git",
+        "revision": "b35605ace3ddf7c1a5d67a2eb553f034aef41d55",
+        "platforms": [
+          "android",
+          "ios"
+        ]
+      },
+      {
+        "name": "cpu_features",
+        "repository": "https://github.com/arthenica/cpu_features.git",
+        "upstreamRef": "v0.11.0",
+        "revision": "81d13c49649f0714dd41fb56bb246398b6584085",
+        "platforms": [
+          "android"
+        ]
+      }
+    ],
+    "build": [
+      {
+        "name": "gnu-config",
+        "repository": "https://github.com/arthenica/gnu-config.git",
+        "upstreamRef": "v20210814",
+        "revision": "805517123cbfe33d17c989a18e78c5789fab0437"
+      },
+      {
+        "name": "gas-preprocessor",
+        "repository": "https://github.com/arthenica/gas-preprocessor.git",
+        "upstreamRef": "v20210917",
+        "revision": "d09971fad329d32df19f5bbafe88cf2f0ed04ed7",
+        "file": "gas-preprocessor.pl",
+        "sha256": "78ad06351ac8be513fb6e6291d9bb8f667899625c2649093e3b08f59fae950a2",
+        "platforms": [
+          "ios"
+        ]
+      }
+    ]
+  },
+  "sourcePinPatch": {
+    "path": "patches/0002-pin-build-source-commits.patch",
+    "sha256": "3af1e7d0e809020f026fbf9b5114b626d4f7902cf40b5aa1215ea8b2a7277d5e"
   }
 }
