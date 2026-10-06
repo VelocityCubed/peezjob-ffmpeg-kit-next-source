@@ -30,9 +30,18 @@ It must print:
 5e51b2da4c3593c0f2f9b49f53eeb497d93e39d3
 ```
 
+## Apply the source pins
+
+Apply this patch once before either platform build. It changes upstream dependency fetches to use the commits in `SOURCE-PIN.json`.
+
+```sh
+git -C ffmpeg-kit-next apply --check ../patches/0002-pin-build-source-commits.patch
+git -C ffmpeg-kit-next apply ../patches/0002-pin-build-source-commits.patch
+```
+
 ## Build Android
 
-Apply the recorded patch once:
+Apply the Android patch once:
 
 ```sh
 git -C ffmpeg-kit-next apply --check ../patches/0001-android-suppress-unused-function-warning.patch
@@ -91,4 +100,6 @@ The scripts write output under `prebuilt/` inside the upstream source directory.
 
 ## Source and changes
 
-The submodule points to the exact FFmpegKitNext commit used for the producer build. The Android patch is stored in this repository. Build flags are listed in `SOURCE-PIN.json`. The pinned FFmpegKitNext scripts identify and retrieve dependency sources. This repository does not mirror those dependency archives.
+The submodule points to the exact FFmpegKitNext commit used for the producer build. The source pin patch makes the build scripts fetch FFmpeg, x264, Android CPU features, GNU config, and the iOS build helper from recorded commits. `SOURCE-PIN.json` records each commit and the iOS helper checksum. The Android patch is stored in this repository.
+
+This repository links to the upstream dependency commits; it does not mirror their source archives. Keep these public source references available while you offer binaries built from them. Apply the source pin patch before each platform build. The iOS and Android patch requirements are listed above.

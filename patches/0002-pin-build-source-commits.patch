@@ -1,0 +1,50 @@
+diff --git a/scripts/function-ios.sh b/scripts/function-ios.sh
+index cd898d7..5a78cd4 100755
+--- a/scripts/function-ios.sh
++++ b/scripts/function-ios.sh
+@@ -366,3 +366,3 @@ set_toolchain_paths() {
+   if [ ! -f "${FFMPEG_KIT_TMPDIR}/gas-preprocessor.pl" ]; then
+-    DOWNLOAD_RESULT=$(download "https://github.com/arthenica/gas-preprocessor/raw/v20210917/gas-preprocessor.pl" "gas-preprocessor.pl" "exit")
++    DOWNLOAD_RESULT=$(download "https://github.com/arthenica/gas-preprocessor/raw/d09971fad329d32df19f5bbafe88cf2f0ed04ed7/gas-preprocessor.pl" "gas-preprocessor.pl" "exit")
+     if [[ ${DOWNLOAD_RESULT} -ne 0 ]]; then
+
+diff --git a/scripts/function.sh b/scripts/function.sh
+index 71e6402..8934440 100755
+--- a/scripts/function.sh
++++ b/scripts/function.sh
+@@ -2622,3 +2622,7 @@ download_gnu_config() {
+-  DOWNLOAD_RC=$(clone_git_repository_with_tag "${SOURCE_REPO_URL}" "${SOURCE_ID}" "${LIB_LOCAL_PATH}")
+-
++  if [ "${SOURCE_TYPE}" == "TAG" ]; then
++    DOWNLOAD_RC=$(clone_git_repository_with_tag "${SOURCE_REPO_URL}" "${SOURCE_ID}" "${LIB_LOCAL_PATH}")
++  else
++    DOWNLOAD_RC=$(clone_git_repository_with_commit_id "${SOURCE_REPO_URL}" "${LIB_LOCAL_PATH}" "${SOURCE_ID}")
++  fi
++
+   if [[ ${DOWNLOAD_RC} -ne 0 ]]; then
+
+diff --git a/scripts/source.sh b/scripts/source.sh
+index 46fb6c6..c65a657 100755
+--- a/scripts/source.sh
++++ b/scripts/source.sh
+@@ -10,4 +10,4 @@ get_library_source() {
+     SOURCE_REPO_URL="https://github.com/arthenica/gnu-config"
+-    SOURCE_ID="v20210814"
+-    SOURCE_TYPE="TAG"
++    SOURCE_ID="805517123cbfe33d17c989a18e78c5789fab0437"
++    SOURCE_TYPE="COMMIT"
+     ;;
+@@ -20,4 +20,4 @@ get_library_source() {
+     SOURCE_REPO_URL="https://github.com/arthenica/cpu_features"
+-    SOURCE_ID="v0.11.0"
+-    SOURCE_TYPE="TAG"
++    SOURCE_ID="81d13c49649f0714dd41fb56bb246398b6584085"
++    SOURCE_TYPE="COMMIT"
+     ;;
+@@ -35,4 +35,4 @@ get_library_source() {
+     SOURCE_REPO_URL="https://github.com/arthenica/FFmpeg"
+-    SOURCE_ID="n9.0.1"
+-    SOURCE_TYPE="TAG"
++    SOURCE_ID="bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa"
++    SOURCE_TYPE="COMMIT"
+     ;;
