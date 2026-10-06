@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "https://github.com/arthenica/ffmpeg-kit-next.git",
+    "revision": "5e51b2da4c3593c0f2f9b49f53eeb497d93e39d3"
+  },
+  "buildOptions": {
+    "common": ["--enable-gpl", "--enable-x264", "--no-ffmpeg-kit-protocols"],
+    "ios": ["--enable-ios-videotoolbox"],
+    "android": ["--enable-android-media-codec"],
+    "iosReleaseDisabledArchitectures": ["arm64-mac-catalyst", "x86-64-mac-catalyst", "arm64-simulator", "x86-64"],
+    "iosDevelopmentDisabledArchitectures": ["arm64-mac-catalyst", "x86-64-mac-catalyst"]
+  },
+  "androidPatch": {
+    "path": "patches/0001-android-suppress-unused-function-warning.patch",
+    "sha256": "c8095b81bdb610303c180fc52bee114e15f9b8110acb91429b79e3c1e2ea267c"
+  }
+}

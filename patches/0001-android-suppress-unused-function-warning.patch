@@ -1,0 +1,7 @@
+diff --git a/android/jni/Android.mk b/android/jni/Android.mk
+--- a/android/jni/Android.mk
++++ b/android/jni/Android.mk
+@@ -66,2 +66,2 @@
+-MY_CFLAGS := -Wall -Werror -Wno-unused-parameter -fPIC -Wno-switch -Wno-sign-compare $(FFMPEG_KIT_PACKAGE_NAME_CFLAG)
++MY_CFLAGS := -Wall -Werror -Wno-unused-function -Wno-unused-parameter -fPIC -Wno-switch -Wno-sign-compare $(FFMPEG_KIT_PACKAGE_NAME_CFLAG)
+ MY_LDLIBS := -llog -lz -landroid
